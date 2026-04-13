@@ -1,27 +1,10 @@
 # EMERALDS + TOMATOES Trading Strategy @ 2.5K PnL 
 
-A lightweight, rule-based market-making strategy for **EMERALDS** and **TOMATOES**.
 
-This implementation combines:
 - **fixed-fair market making** for EMERALDS,
 - **EMA-based mean reversion** for TOMATOES,
 - **inventory-aware quote skewing**, and
 - **hard/soft position limits** for risk control.
-
-
-## Overview
-
-The strategy follows the same core pattern in both products:
-
-1. **Aggressively take mispriced liquidity** when the market is clearly away from fair value.
-2. **Passively quote inside the spread** when spreads are wide enough.
-3. **Skew quotes based on inventory** so the strategy naturally leans toward flattening risk.
-
-Only two products are traded:
-- **EMERALDS**
-- **TOMATOES**
-
-All other products are ignored.
 
 ---
 
