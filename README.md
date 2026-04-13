@@ -1,4 +1,4 @@
-# EMERALDS + TOMATOES Trading Strategy
+# EMERALDS + TOMATOES Trading Strategy @ 2.5K PnL 
 
 A lightweight, rule-based market-making strategy for **EMERALDS** and **TOMATOES**.
 
