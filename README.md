@@ -122,67 +122,9 @@ A key part of the strategy is **inventory-aware pricing**.
 
 Instead of quoting symmetrically at all times, the strategy shifts quotes depending on current position.
 
-### Intuition
-- If the strategy is **too long**, it should bias toward selling.
-- If the strategy is **too short**, it should bias toward buying.
+- If the strategy is **too long**, it should bias --> selling.
+- If the strategy is **too short**, it should bias --> buying.
 
 That is what the skew term is doing: it nudges quotes so the book naturally works inventory back toward neutral.
-
----
-
-## Key Design Choices
-
-This version is deliberately simplified and tuned around a more profitable reference implementation.
-
-### Notable choices
-- **Only EMERALDS and TOMATOES are traded**
-- **No ML model**
-- **Pure EMA mean reversion for TOMATOES**
-- **Simplified inventory skew**
-- **Symmetric take threshold for TOMATOES**
-- **Larger TOMATOES limits than the earlier version**
-
-This makes the strategy easier to reason about, easier to debug, and often more robust than a more complicated model-heavy version.
-
----
-
-## Strengths
-
-- Simple and interpretable
-- Fast to execute
-- Easy to tune
-- Good inventory discipline
-- Suitable for stable or mildly mean-reverting markets
-- Passive + aggressive logic combined in one framework
-
----
-
-## Weaknesses
-
-- **TOMATOES can get run over in strong trends** because the EMA fair value lags.
-- **EMERALDS depends on the fixed fair-value assumption** being correct.
-- When spreads are tight, the strategy steps back and may miss some flow.
-- No volatility regime detection, no adaptive sizing, and no richer order book modeling.
-
----
-
-## High-Level Summary
-
-In one sentence:
-
-> This is an inventory-skewed market-making strategy that trades EMERALDS against a fixed fair value and TOMATOES against an EMA-based moving fair value.
-
-Or even shorter:
-
-> Buy cheap, sell expensive, quote the spread, and let inventory control shape the aggressiveness.
-
----
-
-## File Structure
-
-The `Trader` class contains:
-- `run(...)` — dispatches product-specific logic
-- `trade_emeralds(...)` — fixed-fair market-making logic
-- `trade_tomatoes(...)` — EMA mean-reversion logic
 
 
